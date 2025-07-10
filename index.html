@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Universal Styles */
+:root {
+    --primary-color: #007bff; /* Blue */
+    --secondary-color: #6c757d; /* Gray */
+    --accent-color: #28a745; /* Green */
+    --dark-bg: #212529; /* Dark gray */
+    --light-bg: #f8f9fa; /* Light gray */
+    --text-color-dark: #343a40; /* Dark text */
+    --text-color-light: #ffffff; /* Light text */
+    --card-bg: #ffffff;
+    --border-color: #dee2e6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    background-color: var(--light-bg);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    color: var(--text-color-dark);
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary, .btn-project {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: darken(var(--primary-color), 10%); /* This won't work in pure CSS, use a specific color */
+    background-color: #0056b3; /* A darker shade of blue */
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    margin-left: 15px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+}
+
+.btn-project {
+    background-color: var(--secondary-color);
+    color: var(--text-color-light);
+    border: 2px solid var(--secondary-color);
+    font-size: 0.9em;
+    padding: 8px 15px;
+    margin-right: 10px;
+}
+
+.btn-project:hover {
+    background-color: darken(var(--secondary-color), 10%);
+    background-color: #5a6268; /* A darker shade of gray */
+}
+
+/* Header & Navigation */
+header {
+    background-color: var(--dark-bg);
+    color: var(--text-color-light);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.navbar .logo a {
+    color: var(--text-color-light);
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: var(--text-color-light);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.burger {
+    display: none; /* Hidden by default for larger screens */
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color-light);
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(to right, var(--primary-color), var(--dark-bg));
+    color: var(--text-color-light);
+    padding: 100px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 80vh; /* Adjust as needed */
+    gap: 40px; /* Space between content and image */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.hero-content {
+    max-width: 600px;
+    animation: fadeInScale 1s ease-out forwards;
+}
+
+.hero-content h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    color: var(--text-color-light);
+}
+
+.hero-content .highlight {
+    color: var(--accent-color);
+}
+
+.hero-content .tagline {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+
+.hero-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid var(--accent-color);
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    animation: fadeInScale 1s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sections */
+section {
+    padding: 80px 0;
+    margin-bottom: 30px;
+}
+
+section:nth-child(even) {
+    background-color: var(--light-bg); /* Alternate background for sections */
+}
+
+/* About Section */
+.about-section {
+    text-align: center;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1em;
+}
+
+.about-content p {
+    margin-bottom: 15px;
+}
+
+/* Skills Section */
+.skills-section {
+    background-color: var(--dark-bg);
+    color: var(--text-color-light);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.skill-item {
+    background-color: var(--card-bg);
+    color: var(--text-color-dark);
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.skill-item i {
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.skill-item h3 {
+    font-size: 1.3em;
+    margin-bottom: 0;
+}
+
+/* Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.project-card h3 {
+    padding: 15px 20px 0;
+    font-size: 1.5em;
+}
+
+.project-card p {
+    padding: 0 20px 15px;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.project-links {
+    padding: 0 20px 20px;
+    display: flex;
+    flex-wrap: wrap; /* Allow links to wrap on smaller screens */
+}
+
+/* Contact Section */
+.contact-section {
+    text-align: center;
+}
+
+.contact-info {
+    margin-top: 30px;
+    font-size: 1.1em;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+
+.contact-info a {
+    font-weight: bold;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+.social-links {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a {
+    font-size: 2.5em;
+    color: var(--dark-bg);
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: inherit;
+    width: 100%;
+}
+
+.contact-form button {
+    cursor: pointer;
+    width: auto;
+    align-self: center;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-bg);
+    color: var(--text-color-light);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 50px;
+    font-size: 0.9em;
+}
+
+/* Animations */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        align-items: center;
+        padding: 0 15px;
+    }
+
+    .nav-links {
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 60%;
+        background-color: var(--dark-bg);
+        flex-direction: column;
+        align-items: center;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+        padding-top: 100px;
+        z-index: 999;
+    }
+
+    .nav-links.nav-active {
+        transform: translateX(0%);
+    }
+
+    .nav-links li {
+        margin: 25px 0;
+    }
+
+    .burger {
+        display: block;
+        z-index: 1001; /* Ensure burger is above overlay */
+    }
+
+    .hero-section {
+        flex-direction: column-reverse; /* Put image above text on mobile */
+        padding: 80px 0 40px;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 3em;
+    }
+
+    .hero-image {
+        margin-bottom: 30px;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .skills-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-links {
+        justify-content: center;
+    }
+
+    .btn-secondary {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}
+
+/* Burger Animation */
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.toggle .line2 {
+    opacity: 0;
+}
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+/* Achievements Section */
+.achievements-section {
+    padding: 80px 0;
+    background-color: var(--light-bg); /* Or var(--dark-bg) for a contrasting section */
+    text-align: center;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.achievement-card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Pushes button to bottom */
+}
+
+.achievement-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.achievement-icon {
+    font-size: 3.5em;
+    color: var(--primary-color); /* Or a specific icon color */
+    margin-bottom: 20px;
+}
+
+.achievement-card h3 {
+    font-size: 1.6em;
+    color: var(--text-color-dark);
+    margin-bottom: 15px;
+}
+
+.achievement-card p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Allows paragraph to take up available space */
+}
+
+.achievement-date {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 15px;
+    display: block; /* Ensures it takes its own line */
+}
+
+.btn-achievement-link {
+    display: inline-flex; /* Use flexbox for icon alignment */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--accent-color); /* Green for credentials */
+    color: var(--text-color-light);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+    margin-top: auto; /* Pushes button to the bottom of the flex container */
+}
+
+.btn-achievement-link:hover {
+    background-color: darken(var(--accent-color), 10%); /* Use a specific darker green */
+    background-color: #218838;
+}
+
+.btn-achievement-link i {
+    margin-left: 8px;
+    font-size: 0.8em; /* Adjust icon size within button */
+}
+
+/* Responsive Adjustments for Achievements */
+@media (max-width: 768px) {
+    .achievements-grid {
+        grid-template-columns: 1fr; /* Stack cards on small screens */
+    }
+}
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h3 {
+    font-size: 2em;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.modal-content p {
+    font-size: 1.1em;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.modal-content .btn-primary {
+    margin-top: 20px;
+    padding: 10px 25px;
+}
+
+.modal-links {
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* Modal animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.9); }
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#">CHINDE PRASANNA KUMAR</a>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a> </li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="burger" id="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <h1>Hi, I'm <span class="highlight">CHINDE PRASANNA KUMAR</span></h1>
+                <p class="tagline">A passionate Web Developer specializing in [Front-end, Machine learning engineer, Data analysts]</p>
+                <a href="#projects" class="btn-primary">View My Work</a>
+                <a href="#contact" class="btn-secondary">Get in Touch</a>
+            </div>
+            <div class="hero-image">
+                <img src="img.jpg" alt="Your Name">
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <p>Welcome to my portfolio! I'm a [CHINDE PRASANNA KUMAR/FRESHER] with a strong foundation in [Key Technologies, e.g., HTML, CSS, JavaScript, Python, Sql]. I love building responsive, user-friendly, and visually appealing web applications.</p>
+                    <p>My journey in Data scientist began with during my 12th standard, where my fascination with data science and machine learning ignited my curiosity about how technology shapes and builds interactive experiences.".</p>
+                    <p>Outside of coding, I enjoy [Cooking, Reading, Browsing net].</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section">
+            <div class="container">
+                <h2>Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                     <h3>WEB Development</h3><br>
+                        <i class="fab fa-html5"></i>
+                        <i class="fab fa-css3-alt"></i>
+                        <i class="fab fa-js"></i>
+                       <i class="fas fa-database"></i>
+                        <h3>-HTML</h3>
+                         <h3>-CSS</h3>
+                        <h3>-JavaScript</h3>
+                        <h3>-Flask</h3>
+
+                    </div>
+                    <div class="skill-item">
+                      <h3>Programming</h3><br>
+                      <i class="fab fa-python"></i>  
+                       <h3>Python</h3> 
+                    </div>
+                    <div class="skill-item">
+                        <h3>Databases </h3><br>
+                        <i class="fas fa-database"></i>
+                        <h3>SQL</h3>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Cs Subjects</h3><br>
+<i class="fas fa-project-diagram" title="Data Structures and Algorithms"></i>
+<i class="fas fa-cubes" title="OOPs Concepts"></i>
+<i class="fas fa-microchip" title="Operating System"></i>
+
+                        <h3> - Data Structures Algorithm</h3>
+                        <h3> - OOPs concepts</h3>
+                        <h3> - Operating system</h3>
+                    </div>
+                     <div class="skill-item">
+                        <h3>Machine learning</h3><br>
+                         <i class="fas fa-brain"></i> 
+  <i class="fas fa-superscript"></i>
+  <i class="fas fa-table" ></i>
+  <i class="fas fa-chart-line"></i>
+  <i class="fas fa-cogs"></i> 
+                        <h3>-TensorFlow<h3>
+                            <h3>-Keras</h3> 
+                            <h3>-NumPy</h3> 
+                            <h3>-Pandas</h3>
+                            <h3>-Matplotlib </h3>
+                            <h3>-Scikit-learn</h3>
+                            <h3>-(Standard models and Machine Learning concepts) </h3>
+                    </div>
+                    <div class="skill-item"><h3>
+Data Analysis & Visualization
+                    </h3><br>
+                          <i class="fas fa-table" ></i> 
+  <i class="fas fa-superscript"></i>
+  <i class="fas fa-chart-line"></i> 
+  <i class="fas fa-wave-square"></i> 
+  <i class="fas fa-file-excel"></i> 
+  <i class="fas fa-database"></i> 
+  <i class="fas fa-chart-bar" ></i> 
+                        <h3>-NumPy</h3>
+                        <h3>-Pandas</h3>
+                        <h3>-Matplotlib</h3>
+                        <h3>-Seaborn</h3>
+                        <h3>-Excel</h3>
+                        <h3>-MySQL</h3>
+                        <h3>-PowerBI</h3>
+                    </div>
+                    
+                    
+            </div>
+        </section>
+
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <h2>My Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Heart-Disease-Detection (May. 2025 - June. 2025)</h3>
+                        <p> Heart Disease Detection Machine learning project                                              
+– Build an ML model to predict the likelihood of heart disease in patients based on clinical data from the UCI dataset. 
+– Implemented data preprocessing, feature scaling, and trained models using Random Forest and Logistic Regression. Achieved an accuracy of ~87% on test data. 
+– Built an interactive web UI using Stream lit for real-time predictions. 
+– Made using: Python, Scikit-learn, Pandas, NumPy, Streamlit, Matplotlib, Joblib</p>
+                        <div class="project-links">
+                            <a href=" http://localhost:8501" target="_blank" class="btn-project"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/Prasannakumar-24/heart-disease-detection" target="_blank" class="btn-project"><i class="fab fa-github"></i> GitHub Repo</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Library Management System (LMS)(June. 2025 - July. 2025 )</h3>
+                        <p>•   Library Management System Web Development                                                 
+ – Build a full stack web application. 
+ – A Library system for people to access books and view, borrow, search and return books we can even reserve the  books. 
+ – Made using: HTML, CSS, JavaScript, PHP, MySQL</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank" class="btn-project"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/Prasannakumar-24/library-management-system" target="_blank" class="btn-project"><i class="fab fa-github"></i> GitHub Repo</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3> Portfolio  
+                             (Jan.2025 - Feb.2025)</h3>
+                        <p>This project is a fully responsive, animated personal portfolio website built using HTML, CSS, and JavaScript. It showcases the developer's profile, skills, projects, achievements, and contact information in a clean and professional layout with smooth scrolling and interactive UI components.
+
+</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank" class="btn-project"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/Prasannakumar-24/library-management-system" target="_blank" class="btn-project"><i class="fab fa-github"></i> GitHub Repo</a>
+                        </div>
+                    </div>
+            </div>
+        </section>
+        <section id="achievements" class="achievements-section">
+            <div class="container">
+                <h2>Achievements & Certifications</h2>
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <i class="fas fa-certificate achievement-icon"></i>
+                        <h3>NPTEL – Python for Data Science</h3>
+                        <p>Completed the "Python for Data Science" course offered by NPTEL (National Programme on Technology Enhanced Learning), an initiative by the Government of India. The course covered core Python programming concepts, data handling using libraries such as NumPy and Pandas, and data visualization using Matplotlib. Gained hands-on experience in writing Python code for data analysis and solving real-world data problems.
+
+</p>
+                        <span class="achievement-date">Issued: Jan-Feb 2025</span>
+                        <a href="nptel_python.pdf" target="_blank" class="btn-achievement-link">View Credential <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-certificate achievement-icon"></i>
+                        <h3>Accenture – Project Management Job Simulation </h3>
+                        <p>Completed a virtual job simulation offered by Accenture on the Forage platform. Gained hands-on experience in real-world project management tasks including project scoping, stakeholder communication, risk management, and scheduling. Developed key skills in decision-making, business communication, and time management while simulating a consultant role in a professional environment.
+</p>
+                        <span class="achievement-date">Issued: Apr 2025</span>
+                        <a href="accenture_project_management.pdf" target="_blank" class="btn-achievement-link">View Credential <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-certificate achievement-icon"></i>
+                        <h3>TATA - Data Visualization</h3>
+                        <p>Completed a virtual internship program by Tata Group on the Forage platform, focused on data visualization and storytelling. Learned how to analyze datasets, identify trends, and present insights through impactful visualizations using tools like Excel, Power BI, and data dashboards. Developed skills in interpreting business data and crafting visual reports to support strategic decision-making.
+
+                        </p>
+                        <span class="achievement-date">Issued: Apr 2025</span>
+                        <a href="tata_data_visualisation.pdf" target="_blank" class="btn-achievement-link">View Credential <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    </div>
+            </div>
+        </section>
+        <div id="achievementModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modalTitle"></h3>
+            <p id="modalDescription"></p>
+            <p><span id="modalDate"></span></p>
+            <div class="modal-links">
+                <a id="modalLink" href="#" target="_blank" class="btn-primary">View Credential</a>
+            </div>
+        </div>
+    </div>
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <p>Have a question or want to work together? Feel free to reach out!</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:chprasannakumar2004@gmail.com">chprasannakumar2004@gmail.com</a></p>
+                    <p><i class="fas fa-phone"></i> +91-7022154823</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/prasanna-kumar-chinde-42a3a631a" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/Prasannakumar-24" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://x.com/Prasann91487323" target="_blank"><i class="fab fa-twitter"></i></a>
+                        </div>
+                </div>
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Prasanna Kumar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('navLinks');
+    const navLinks = document.querySelectorAll('.nav-links li');
+
+    // Toggle Nav
+    burger.addEventListener('click', () => {
+        nav.classList.toggle('nav-active');
+
+        // Animate Links
+        navLinks.forEach((link, index) => {
+            if (link.style.animation) {
+                link.style.animation = '';
+            } else {
+                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+            }
+        });
+
+        // Burger Animation
+        burger.classList.toggle('toggle');
+    });
+
+    // Close nav when a link is clicked (for smooth scrolling)
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (nav.classList.contains('nav-active')) {
+                nav.classList.remove('nav-active');
+                burger.classList.remove('toggle');
+                navLinks.forEach(item => item.style.animation = ''); // Reset animation
+            }
+        });
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+});
+// Optional: Achievement Modal Logic
+    const achievementCards = document.querySelectorAll('.achievement-card');
+    const modal = document.getElementById('achievementModal');
+    const closeButton = document.querySelector('.close-button');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalDate = document.getElementById('modalDate');
+    const modalLink = document.getElementById('modalLink');
+
+    achievementCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            // Prevent opening modal if clicking the link directly
+            if (e.target.closest('.btn-achievement-link')) {
+                return;
+            }
+
+            const title = card.querySelector('h3').textContent;
+            const description = card.querySelector('p').textContent;
+            const date = card.querySelector('.achievement-date').textContent;
+            const linkElement = card.querySelector('.btn-achievement-link');
+            const link = linkElement ? linkElement.href : '#';
+            const linkText = linkElement ? linkElement.textContent : 'No link available';
+
+            modalTitle.textContent = title;
+            modalDescription.textContent = description;
+            modalDate.textContent = date;
+            modalLink.href = link;
+            modalLink.textContent = linkText;
+
+            modal.style.display = 'flex'; // Use flex to center
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        });
+    });
+
+    closeButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    });
+
+    // Close modal if clicked outside of content
+    window.addEventListener('click', (event) => {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+    // Scroll reveal animation
+window.addEventListener('scroll', () => {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(elem => {
+        const windowHeight = window.innerHeight;
+        const elementTop = elem.getBoundingClientRect().top;
+        const revealPoint = 100;
+
+        if (elementTop < windowHeight - revealPoint) {
+            elem.classList.add('active');
+        }
+    });
+});
+
+    </script>
+</body>
+</html>
